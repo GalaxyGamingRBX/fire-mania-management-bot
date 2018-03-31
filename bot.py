@@ -47,7 +47,7 @@ async def on_message_edit(before, after):
   
 @client.command()
 async def foo(ctx, arg):
-    await ctx.say(arg)
+    await client.send_message(ctx.message.channel, arg)
  
 @client.event
 
