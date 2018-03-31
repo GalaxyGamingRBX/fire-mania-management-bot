@@ -44,6 +44,10 @@ async def on_message_edit(before, after):
   emb.add_field(name="Original Message", value="%s" % (before.content), inline=False)
   emb.add_field(name="Edited Message", value="%s" % (after.content), inline=False)
   await client.send_message(logschannel, embed=emb)
+  
+@client.command()
+async def foo(ctx, arg):
+    await ctx.send(arg)
  
 @client.event
 
