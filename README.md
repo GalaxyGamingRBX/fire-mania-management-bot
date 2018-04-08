@@ -1,5 +1,3 @@
-<p> <img src="https://i.imgur.com/lBSqWgt.png"/> </p>
-
 # Fire Mania Management Bot Python File
 This is the official code of the FMM bot. Hosted on Heroku.
 
