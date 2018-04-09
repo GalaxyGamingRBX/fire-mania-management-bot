@@ -8,7 +8,6 @@ import datetime
 import sqlite3
 import pagerank
 
-rank = pagerank.get_pagerank('http://www.google.com')
 
 coinconn = sqlite3.connect('coinStorage.db')
 c = coinconn.cursor()
@@ -315,6 +314,7 @@ async def on_message(message):
       rank = pagerank.get_pagerank(term)
       emb = (discord.Embed(description=None, colour=0xFFFF00))
       emb.add_field(name="Google PageRank", value="The Google PageRank for the url `%s` is `%s`" % (" ".join(args[1:]), rank))
+      await client.send_message(message.channel, embed=emb)
       
 
 client.run("NDE5OTA0MDkxNjA3NjYyNTky.DX27wA.zctI11rIHCQlRQVGYOXGqDSLhNs")
