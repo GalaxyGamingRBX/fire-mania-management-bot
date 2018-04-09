@@ -6,6 +6,9 @@ import time
 import random
 import datetime
 import sqlite3
+import pagerank
+
+rank = pagerank.get_pagerank('http://www.google.com')
 
 coinconn = sqlite3.connect('coinStorage.db')
 c = coinconn.cursor()
@@ -306,5 +309,12 @@ async def on_message(message):
                  emb = (discord.Embed(description=None, colour=0x3DF270))
                  emb.add_field(name="Coins", value="You have %s coins!" % (row[1]), inline=False)
                  await client.send_message(message.channel, embed=emb)
+    if message.content.upper().startswith('!RANK'):
+      args = message.content.split(" ")
+      term = " ".join(args[1:])
+      rank = pagerank.get_pagerank(term)
+      emb = (discord.Embed(description=None, colour=0xFFFF00))
+      emb.add_field(name="Google PageRank", value="The Google PageRank for the url `%s` is `%s`" % (" ".join(args[1:]), rank))
+      
 
 client.run("NDE5OTA0MDkxNjA3NjYyNTky.DX27wA.zctI11rIHCQlRQVGYOXGqDSLhNs")
