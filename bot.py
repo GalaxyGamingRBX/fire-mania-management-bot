@@ -317,4 +317,4 @@ async def on_message(message):
       await client.send_message(message.channel, embed=emb)
       
 
-client.run("NDQwOTc2NDgxNjQxMDM3ODM1.DcpjYg.NRgUSX3wDlUAyBylTYLlrhzlXYo")
+client.run("NDQwOTc2NDgxNjQxMDM3ODM1.DcplRQ.-yz-i0jXyUolTdXxBSUrPJDWq6c")
