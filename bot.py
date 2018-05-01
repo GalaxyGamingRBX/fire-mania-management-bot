@@ -6,7 +6,6 @@ import time
 import random
 import datetime
 import sqlite3
-import pagerank
 
 
 coinconn = sqlite3.connect('coinStorage.db')
