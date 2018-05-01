@@ -307,13 +307,6 @@ async def on_message(message):
                  emb = (discord.Embed(description=None, colour=0x3DF270))
                  emb.add_field(name="Coins", value="You have %s coins!" % (row[1]), inline=False)
                  await client.send_message(message.channel, embed=emb)
-    if message.content.upper().startswith('!RANK'):
-      args = message.content.split(" ")
-      term = " ".join(args[1:])
-      rank = pagerank.get_pagerank(term)
-      emb = (discord.Embed(description=None, colour=0xFFFF00))
-      emb.add_field(name="Google PageRank", value="The Google PageRank for the url `%s` is `%s`" % (" ".join(args[1:]), rank))
-      await client.send_message(message.channel, embed=emb)
       
 
 client.run("NDQwOTc2NDgxNjQxMDM3ODM1.DcplRQ.-yz-i0jXyUolTdXxBSUrPJDWq6c")
