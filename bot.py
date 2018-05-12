@@ -15,6 +15,8 @@ c = coinconn.cursor()
 Client = discord.Client()
 client = commands.Bot(command_prefix = "?")
 
+wordsToBlock = ["TEST", "FILTER"]
+
 @client.event
 async def on_ready():
   print("Management || Bot is Online and ready.")
@@ -55,6 +57,10 @@ async def foo(arg):
 
 async def on_message(message):
     numOfMessages +1
+    contents = message.content.split(" ")
+    for word in contents:
+      if word.upper() in wordsToBlock:
+        await client.delete_message(message)
     if message.content.upper().startswith('?HELP'):
         emb = (discord.Embed(description=None, colour=0x3DF270))
         emb.add_field(name="Welcome to Fire Mania Management!",value="I am here to serve and protect this server. For version info, say `?version`. I am still being coded and I barely have commands, but that will change!",inline=False)
