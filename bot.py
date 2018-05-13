@@ -60,15 +60,17 @@ async def on_message(message):
     contents = message.content.split(" ")
     for word in contents:
       if word.upper() in wordsToBlock:
+        muted = discord.utils.get(message.server.roles, name="Muted")
         prewarning = discord.utils.get(message.server.roles, name="Pre-Warning")
         warning1 = discord.utils.get(message.server.roles, name="Warning 1")
         warning2 = discord.utils.get(message.server.roles, name="Warning 2")
         warning3 = discord.utils.get(message.server.roles, name="Warning 3")
         if "444869791329681417" in [role.id for role in message.author.roles]:
-           await client.add_roles(message.author, warning1)    
+           await client.add_roles(message.author, warning1)  
+           await client.add_roles(message.author, muted)
            await client.remove_roles(message.author, prewarning)
            emb = (discord.Embed(description=None, colour=0xFF0000))
-           emb.add_field(name="Chat Filter", value="%s, you have used a blocked word. You have been given Warning 1." % (message.author), inline=False)
+           emb.add_field(name="Chat Filter", value="%s, you have used a blocked word. You have been given a warning and also muted. You are now on Warning 1." % (message.author), inline=False)
            await client.send_message(message.channel, embed=emb)
     if message.content.upper().startswith('?HELP'):
         emb = (discord.Embed(description=None, colour=0x3DF270))
