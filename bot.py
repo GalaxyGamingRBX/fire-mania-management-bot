@@ -67,6 +67,9 @@ async def on_message(message):
         warning3 = discord.utils.get(message.server.roles, name="Warning 3")
         if "444869791329681417" not in [role.id for role in message.author.roles]:
           await client.delete_message(message)
+           emb = (discord.Embed(description=None, colour=0xFF0000))
+           emb.add_field(name="Chat Filter", value="%s, you have used a blocked word. You have been given a pre-warning." % (message.author), inline=False)
+          await client.send_message(message.channel, embed=emb)
           await client.add_roles(message.author, prewarning) 
         if "444869791329681417" in [role.id for role in message.author.roles]:
            await client.delete_message(message)
