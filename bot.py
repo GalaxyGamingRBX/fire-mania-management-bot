@@ -65,7 +65,11 @@ async def on_message(message):
         warning1 = discord.utils.get(message.server.roles, name="Warning 1")
         warning2 = discord.utils.get(message.server.roles, name="Warning 2")
         warning3 = discord.utils.get(message.server.roles, name="Warning 3")
+        if "444869791329681417" not in [role.id for role in message.author.roles]:
+          await client.delete_message(message)
+          await client.add_roles(message.author, prewarning) 
         if "444869791329681417" in [role.id for role in message.author.roles]:
+           await client.delete_message(message)
            await client.add_roles(message.author, warning1)  
            await client.add_roles(message.author, muted)
            await client.remove_roles(message.author, prewarning)
