@@ -372,7 +372,7 @@ async def on_message(message):
     if message.content.upper().startswith('?SENDMESSAGE'):
       emb = (discord.Embed(description=None, colour=0xFF0000))
       emb.add_field(name="Punishment Information - Mute", value="You have been muted. This means that you have no access to any channels. You were also given a DM by the bot. When your time is up, please review our rules. You should be released in 20 minutes. If you are not, please DM **ChargeFirePlayz#4571**.", inline=False)
-      await client.send_message(message.channel, 
+      await client.send_message(message.channel, embed=emb)
       
 
 client.run("NDQwOTc2NDgxNjQxMDM3ODM1.DcplRQ.-yz-i0jXyUolTdXxBSUrPJDWq6c")
