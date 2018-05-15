@@ -67,17 +67,54 @@ async def on_message(message):
         warning3 = discord.utils.get(message.server.roles, name="Warning 3")
         if "444869791329681417" not in [role.id for role in message.author.roles]:
           await client.delete_message(message)
+          emb1 = (discord.Embed(description=None, colour=0xFF0000))
+          emb1.add_field(name="Punishment from Fire Mania", value="%s, you were given a Pre-Warning. This warning will expire whenever the staff team believes it should be removed. Please review our rules and have fun." % (message.author), inline=False)
+          await client.send_message(message.author, embed=emb1)
           emb = (discord.Embed(description=None, colour=0xFF0000))
           emb.add_field(name="Chat Filter", value="%s, you have used a blocked word. You have been given a pre-warning." % (message.author), inline=False)
           await client.send_message(message.channel, embed=emb)
           await client.add_roles(message.author, prewarning) 
-        if "444869791329681417" in [role.id for role in message.author.roles]:
+        elif "444869791329681417" in [role.id for role in message.author.roles]:
            await client.delete_message(message)
+           emb1 = (discord.Embed(description=None, colour=0xFF0000))
+           emb1.add_field(name="Punishment from Fire Mania", value="%s, you were given a warning. This warning will expire whenever the staff team believes it should be removed. You are now on Warning 1. Please review our rules and have fun." % (message.author), inline=False)
+           await client.send_message(message.author, embed=emb1)
+           emb2 = (discord.Embed(description=None, colour=0xFF0000))
+           emb2.add_field(name="Punishment from Fire Mania", value="%s, you were muted. You will be unmuted in 20 minutes. If you experience any trouble or are not unmuted, please DM a staff member. Please review our rules and have fun." % (message.author), inline=False)
+           await client.send_message(message.author, embed=emb2)
            await client.add_roles(message.author, warning1)  
            await client.add_roles(message.author, muted)
            await client.remove_roles(message.author, prewarning)
            emb = (discord.Embed(description=None, colour=0xFF0000))
            emb.add_field(name="Chat Filter", value="%s, you have used a blocked word. You have been given a warning and also muted. You are now on Warning 1." % (message.author), inline=False)
+           await client.send_message(message.channel, embed=emb)
+        elif "444874571829608458" in [role.id for role in message.author.roles]:
+           await client.delete_message(message)
+           emb1 = (discord.Embed(description=None, colour=0xFF0000))
+           emb1.add_field(name="Punishment from Fire Mania", value="%s, you were given a warning. This warning will expire whenever the staff team believes it should be removed. You are now on Warning 2. ease review our rules and have fun." % (message.author), inline=False)
+           await client.send_message(message.author, embed=emb1)
+           emb2 = (discord.Embed(description=None, colour=0xFF0000))
+           emb2.add_field(name="Punishment from Fire Mania", value="%s, you were muted. You will be unmuted in 20 minutes. If you experience any trouble or are not unmuted, please DM a staff member. Please review our rules and have fun." % (message.author), inline=False)
+           await client.send_message(message.author, embed=emb2)
+           await client.add_roles(message.author, warning2)  
+           await client.add_roles(message.author, muted)
+           await client.remove_roles(message.author, warning1)
+           emb = (discord.Embed(description=None, colour=0xFF0000))
+           emb.add_field(name="Chat Filter", value="%s, you have used a blocked word. You have been given a warning and also muted. You are now on Warning 2." % (message.author), inline=False)
+           await client.send_message(message.channel, embed=emb)
+        elif "444875259964030987" in [role.id for role in message.author.roles]:
+           await client.delete_message(message)
+           emb1 = (discord.Embed(description=None, colour=0xFF0000))
+           emb1.add_field(name="Punishment from Fire Mania", value="%s, you were given a warning. This warning will expire whenever the staff team believes it should be removed. You are now on Warning 3 Please review our rules and have fun." % (message.author), inline=False)
+           await client.send_message(message.author, embed=emb1)
+           emb2 = (discord.Embed(description=None, colour=0xFF0000))
+           emb2.add_field(name="Punishment from Fire Mania", value="%s, you were muted. You will be unmuted in 20 minutes. If you experience any trouble or are not unmuted, please DM a staff member. Please review our rules and have fun." % (message.author), inline=False)
+           await client.send_message(message.author, embed=emb2)
+           await client.add_roles(message.author, warning3)  
+           await client.add_roles(message.author, muted)
+           await client.remove_roles(message.author, warning2)
+           emb = (discord.Embed(description=None, colour=0xFF0000))
+           emb.add_field(name="Chat Filter", value="%s, you have used a blocked word. You have been given a warning and also muted. You are now on Warning 3." % (message.author), inline=False)
            await client.send_message(message.channel, embed=emb)
     if message.content.upper().startswith('?HELP'):
         emb = (discord.Embed(description=None, colour=0x3DF270))
@@ -305,6 +342,7 @@ async def on_message(message):
         emb = (discord.Embed(description=None, colour=0x3DF270))
         emb.add_field(name="Success", value="You have pinned the message id `%s`." % (" ".join(args[1:])), inline=False)
         await client.send_message(message.channel, embed=emb)
+        
       else:
         emb = (discord.Embed(description=None, colour=0xFF0000))
         emb.add_field(name="Task Failure", value="You are not an admin and cannot do this!", inline=False)
@@ -331,6 +369,10 @@ async def on_message(message):
                  emb = (discord.Embed(description=None, colour=0x3DF270))
                  emb.add_field(name="Coins", value="You have %s coins!" % (row[1]), inline=False)
                  await client.send_message(message.channel, embed=emb)
+    if message.content.upper().startswith('?SENDMESSAGE'):
+      emb = (discord.Embed(description=None, colour=0xFF0000))
+      emb.add_field(name="Punishment Information - Mute", value="You have been muted. This means that you have no access to any channels. You were also given a DM by the bot. When your time is up, please review our rules. You should be released in 20 minutes. If you are not, please DM **ChargeFirePlayz#4571**.", inline=False)
+      await client.send_message(message.channel, 
       
 
 client.run("NDQwOTc2NDgxNjQxMDM3ODM1.DcplRQ.-yz-i0jXyUolTdXxBSUrPJDWq6c")
