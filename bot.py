@@ -390,7 +390,8 @@ async def on_message(message):
        number = 100
        async for x in client.logs_from(message.channel, limit = number):
            mgs.append(x)
-       await client.delete_messages(mgs)
+       for message in mgs:
+        await client.delete_message(message)
        await client.delete_message(message)
        emb = (discord.Embed(description=None, colour=0x3DF270))
        emb.add_field(name="Success", value="I deleted %s messages in the channel <#%s>. Please note that any messages over 14 days of age are not able to be deleted due to a limitation in Discord." % (len(mgs), message.channel.id), inline=False)
