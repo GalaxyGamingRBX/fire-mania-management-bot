@@ -47,11 +47,6 @@ async def on_message_edit(before, after):
   emb.add_field(name="Original Message", value="%s" % (before.content), inline=False)
   emb.add_field(name="Edited Message", value="%s" % (after.content), inline=False)
   await client.send_message(logschannel, embed=emb)
-  
-@client.command()
-async def foo(arg):
-    pass
-    await client.send_message(ctx.message.channel, arg)
  
 @client.event
 
@@ -377,8 +372,7 @@ async def on_message(message):
     if message.content.upper().startswith('?REGISTER'):
        user = str(message.author)
        val = int(1000)
-       c.execute("INSERT INTO coinStorage VALUES (?, ?)",
-          (user, val))
+       c.execute("INSERT INTO coinStorage VALUES (?, ?)", (user, val))
        coinconn.commit()
        emb = (discord.Embed(description=None, colour=0x3DF270))
        emb.add_field(name="Success", value="You have registered yourself to the Coin Storage Database! User: `%s` | Coins: `1000`" % (message.author), inline=False)
@@ -391,10 +385,15 @@ async def on_message(message):
                  emb = (discord.Embed(description=None, colour=0x3DF270))
                  emb.add_field(name="Coins", value="You have %s coins!" % (row[1]), inline=False)
                  await client.send_message(message.channel, embed=emb)
-    if message.content.upper().startswith('?SENDMESSAGE'):
-      emb = (discord.Embed(description=None, colour=0xFF0000))
-      emb.add_field(name="Punishment Information - Mute", value="You have been muted. This means that you have no access to any channels. You were also given a DM by the bot. When your time is up, please review our rules. You should be released in 20 minutes. If you are not, please DM **ChargeFirePlayz#4571**.", inline=False)
-      await client.send_message(message.channel, embed=emb)
+    if message.content.upper().startswith('?DELMESSAGES'):
+      await client.delete_message(message)
+      delmessages = 0
+      async for message in client.logs_from(channel, limit=5000):
+          client.delete_message(message)
+          delmessages += 1
+       emb = (discord.Embed(description=None, colour=0x3DF270))
+       emb.add_field(name="Success", value="I deleted %s messages in the channel <#%s>. If any messages were over 14 days old, I wasn't able to delete them due to a restriction in Discord.", inline=False)
+       await client.send_message(message.author, embed=emb)
       
 
 client.run("NDQwOTc2NDgxNjQxMDM3ODM1.DcplRQ.-yz-i0jXyUolTdXxBSUrPJDWq6c")
