@@ -391,9 +391,9 @@ async def on_message(message):
       async for message in client.logs_from(channel, limit=5000):
           client.delete_message(message)
           delmessages += 1
-       emb = (discord.Embed(description=None, colour=0x3DF270))
-       emb.add_field(name="Success", value="I deleted %s messages in the channel <#%s>. If any messages were over 14 days old, I wasn't able to delete them due to a restriction in Discord.", inline=False)
-       await client.send_message(message.author, embed=emb)
+      emb = (discord.Embed(description=None, colour=0x3DF270))
+      emb.add_field(name="Success", value="I deleted %s messages in the channel <#%s>. If any messages were over 14 days old, I wasn't able to delete them due to a restriction in Discord.", inline=False)
+      await client.send_message(message.author, embed=emb)
       
 
 client.run("NDQwOTc2NDgxNjQxMDM3ODM1.DcplRQ.-yz-i0jXyUolTdXxBSUrPJDWq6c")
