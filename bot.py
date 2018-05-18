@@ -386,6 +386,9 @@ async def on_message(message):
                  emb.add_field(name="Coins", value="You have %s coins!" % (row[1]), inline=False)
                  await client.send_message(message.channel, embed=emb)
     if message.content.upper().startswith('?DELMESSAGES'):
+       emb = (discord.Embed(description=None, colour=0x3DF270))
+       emb.add_field(name="Success", value="I am currently deleting up to 1,000 messages in the channel you ran the command in. You may run this command again whenever it is neccessary. The bot may experience lag during this time.", inline=False)
+       await client.send_message(message.author, embed=emb)
        mgs = []
        number = 100
        async for x in client.logs_from(message.channel, limit = number):
@@ -393,9 +396,6 @@ async def on_message(message):
        for message in mgs:
         await client.delete_message(message)
        await client.delete_message(message)
-       emb = (discord.Embed(description=None, colour=0x3DF270))
-       emb.add_field(name="Success", value="I deleted %s messages in the channel <#%s>. Please note that any messages over 14 days of age are not able to be deleted due to a limitation in Discord." % (len(mgs), message.channel.id), inline=False)
-       await client.send_message(message.author, embed=emb)
       
 
 client.run("NDQwOTc2NDgxNjQxMDM3ODM1.DcplRQ.-yz-i0jXyUolTdXxBSUrPJDWq6c")
