@@ -396,6 +396,13 @@ async def on_message(message):
        for message in mgs:
         await client.delete_message(message)
        await client.delete_message(message)
-      
-
+    if message.content.upper().startswith('?SENDMESSAGES'):
+       emb = (discord.Embed(description=None, colour=0xFF0000))
+       emb.add_field(name="Rules", value="Please make sure to follow these rules. You WILL be given a warning by breaking them.", inline=False)
+       emb.add_field(name="Rule 1", value="Do not insult or harass anyone while here. Try to be nice and polite to others, even if you may not like the person.", inline=False)
+       emb.add_field(name="Rule 2", value="Please be rational/logical. Make sure to use common sense. If you are annoying, you may be warned by a staff member.", inline=False)
+       emb.add_field(name="Rule 3", value="Do not start fights while here. We try our best to avoid drama, and you should too.", inline=False)
+       emb.add_field(name="Rule 4", value="DO NOT advertise your livestreams, servers, twitter accounts, etc. It is spam. You must have permission before advertising.", inline=False)
+       emb.add_field(name="Rule 5", value="Please use highlights(#)/mentions(@) with modesty. It can be annoying and the bot has functions to detect this type of spam.", inline=False)
+        
 client.run("NDQwOTc2NDgxNjQxMDM3ODM1.DcplRQ.-yz-i0jXyUolTdXxBSUrPJDWq6c")
