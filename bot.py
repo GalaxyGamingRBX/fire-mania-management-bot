@@ -404,5 +404,13 @@ async def on_message(message):
        emb.add_field(name="Rule 3", value="Do not start fights while here. We try our best to avoid drama, and you should too.", inline=False)
        emb.add_field(name="Rule 4", value="DO NOT advertise your livestreams, servers, twitter accounts, etc. It is spam. You must have permission before advertising.", inline=False)
        emb.add_field(name="Rule 5", value="Please use highlights(#)/mentions(@) with modesty. It can be annoying and the bot has functions to detect this type of spam.", inline=False)
+       emb.add_field(name="Rule 6", value="NO NSFW! We would like to keep this place a safe and fun place for people to chat with each other. NSFW can be disturbing. If you are caught, you will be given a warning.", inline=False)
+       emb.add_field(name="Rule 7", value="Don't spam. It really is a pain to deal with, so don't do it.", inline=False)
+       emb.add_field(name="Rule 8", value="No swearing. This goes with Rule 6, as we want to keep it as SFW as possible. Swearing is dealt with by the bot, and will give you a warning.", inline=False)
+       emb.add_field(name="Rule 9", value="Don't troll anyone in this server. You will be warned.", inline=False)
+       emb.add_field(name="Rule 10", value="Please keep all support questions in <#402453682177835009>. Read all pinned messages there.", inline=False)
+       emb.add_field(name="Rule 11", value="If you see anyone breaking rules, DM a staff member or report it in <#427458229019082752>.", inline=False)
+       emb.add_field(name="Two more things...", value="Did you know getting a warning also gets you muted? Also, have fun!!", inline=False)
+       await client.send_message(message.channel, embed=emb)
         
 client.run("NDQwOTc2NDgxNjQxMDM3ODM1.DcplRQ.-yz-i0jXyUolTdXxBSUrPJDWq6c")
