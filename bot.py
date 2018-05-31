@@ -15,7 +15,7 @@ c = coinconn.cursor()
 Client = discord.Client()
 client = commands.Bot(command_prefix = "?")
 
-wordsToBlock = ["TEST", "FILTER"]
+wordsToBlock = ["FUCK", "FCK", "FU$CK", "BITCH", "B!TCH", "CUNT", "CU$T", "SHIT", "$HIT", "SEX", "$3X", "$EX", "S3X", "COCK", "C0CK", "CO CK"]
 
 @client.event
 async def on_ready():
