@@ -60,7 +60,24 @@ async def on_message(message):
         warning1 = discord.utils.get(message.server.roles, name="Warning 1")
         warning2 = discord.utils.get(message.server.roles, name="Warning 2")
         warning3 = discord.utils.get(message.server.roles, name="Warning 3")
+        channelbanned = discord.utils.get(message.server.roles, name="Channel Banned")
         punishlogs = client.get_channel("444869384918532108")
+        if "444875621240274946" in [role.id for role in message.author.roles]:
+           await client.delete_message(message)
+           emb1 = (discord.Embed(description=None, colour=0xFF0000))
+           emb1.add_field(name="Punishment from Fire Mania", value="%s, you were channel banned. This will expire in 7 days. If you haven't been unbanned, please contact **@GalaxyGaming#6454**. Please review our rules and have fun." % (message.author), inline=False)
+           await client.send_message(message.author, embed=emb1)
+           await client.add_roles(message.author, channelbanned)  
+           await client.remove_roles(message.author, warning3)
+           emb4 = (discord.Embed(description=None, colour=0xFF0000))
+           emb4.add_field(name="Channel Ban - %s" % (message.author), value="<@%s> has been channel banned. You should take this in 7 days from this message. To remove this punishment, please do `?remove channelban @user` in <#446056722763874335>." % (message.author.id), inline=False)
+           await client.send_message(punishlogs, embed=emb4)
+           emb5 = (discord.Embed(description=None, colour=0xFF0000))
+           emb5.add_field(name="Muted - %s" % (message.author), value="<@%s> has been muted. You should take this whenever you feel it is okay. To remove this punishment, please do `?unmute @user` anywhere." % (message.author.id), inline=False)
+           await client.send_message(punishlogs, embed=emb5)
+           emb = (discord.Embed(description=None, colour=0xFF0000))
+           emb.add_field(name="Chat Filter", value="%s, you have used a blocked word. You have been channel banned." % (message.author), inline=False)
+           await client.send_message(message.channel, embed=emb)
         if "444875259964030987" in [role.id for role in message.author.roles]:
            await client.delete_message(message)
            emb1 = (discord.Embed(description=None, colour=0xFF0000))
@@ -135,8 +152,23 @@ async def on_message(message):
           await client.add_roles(message.author, prewarning) 
     if message.content.upper().startswith('?HELP'):
         emb = (discord.Embed(description=None, colour=0x3DF270))
-        emb.add_field(name="Welcome to Fire Mania Management!",value="I am here to serve and protect this server. For version info, say `?version`. If you have any issues with me, DM **@GalaxyGaming#6454**. If you need help at anytime, just mention a staff member with **@Staff**. Any abuse to this help system will result in a warning.",inline=False)
+        emb.add_field(name="Command List",value="Here's a list of commands. If you are an admin, an admin command list will be sent to you via DM.",inline=False)
+        emb.add_field(name="?support",value="Do this command to learn how to get support in this server.",inline=False)
+        emb.add_field(name="?version",value="Learn the version.",inline=False)
+        emb.add_field(name="?8ball <question>",value="Learn the answers to life's MOST important questions.",inline=False)
+        emb.add_field(name="?cookie <@user>",value="Send a cookie to someone for being a good friend, or you just give it to me. :wink:",inline=False)
+        emb.add_field(name="?hug <@user>",value="Send a virtual hug to somone you :heart:.",inline=False)
+        emb.add_field(name="?punch <@user>",value="Throw a punch.",inline=False)
+        emb.add_field(name="?slap <@user>",value="When you say you're gonna slap someone, use this.",inline=False)
+        emb.add_field(name="?invite",value="Create an invite to share with your friends!",inline=False)
+        emb.add_field(name="?subscribe",value="Subscribe to the announcements.",inline=False)
+        emb.add_field(name="?unsubscribe",value="Unsubscribe to the announcements.",inline=False)
         print("%s ran the ?help command!" % (message.author.id))
+        await client.send_message(message.channel, embed=emb)
+    if message.content.upper().startswith('?SUPPORT'):
+        emb = (discord.Embed(description=None, colour=0x3DF270))
+        emb.add_field(name="Get Support",value="Need some help? Please tag a staff member, but try not to DM them. Need some help with me, please DM my maker **@GalaxyGaming#6454**. To speak with the owner, please DM Charge. I won't give you his tag because it changes.",inline=False)
+        print("%s ran the ?support command!" % (message.author.id))
         await client.send_message(message.channel, embed=emb)
     if message.content.upper().startswith('?VERSION') or message.content.upper().startswith('*VERSION') or message.content.upper().startswith('-VERSION') or message.content.upper().startswith('>VERSION'):
        emb = (discord.Embed(description=None, colour=0x3DF270))
@@ -295,18 +327,26 @@ async def on_message(message):
          await client.add_reaction(message, "\U0001F620")
     if message.content.upper().startswith('?SUBSCRIBE') or message.content.upper().startswith('*SUBSCRIBE') or message.content.upper().startswith('-SUBSCRIBE') or message.content.upper().startswith('>SUBSCRIBE'):
       if "427167017917743114" in [role.id for role in message.author.roles]:
-         await client.send_message(message.channel, "<@%s> :x: You are already a subscriber!" % (message.author.id))
+         emb = (discord.Embed(description=None, colour=0xFF0000))
+         emb.add_field(name="Oops!", value="You are already subscribed! If you wish to unsubscribe, please do `?unsubscribe`.", inline=False)
+         await client.send_message(message.channel, embed=emb)
       else:
+         emb = (discord.Embed(description=None, colour=0x3DF270))
+         emb.add_field(name="Success", value="You are now a subscriber and will be notified when something is posted in <#419590200805687296>. Thank you so much! :heart:", inline=False)
          sub = discord.utils.get(message.server.roles, name="Subscriber")
          await client.add_roles(message.author, sub)
-         await client.send_message(message.channel, "<@%s> :white_check_mark: You are now a subscriber and will be pinged when there is an announcement!" % (message.author.id))
+         await client.send_message(message.channel, embed=emb)
     if message.content.upper().startswith('?UNSUBSCRIBE'):
             if "427167017917743114" in [role.id for role in message.author.roles]:
+              emb = (discord.Embed(description=None, colour=0x3DF270))
+              emb.add_field(name="Success", value="You are no longer a subscriber and will not be pinged when a new announcement comes out.", inline=False)
               sub = discord.utils.get(message.server.roles, name="Subscriber")
               await client.remove_roles(message.author, sub)
-              await client.send_message(message.channel, "<@%s> :white_check_mark: You are no longer a subscriber and will not be pinged when there is an announcement." % (message.author.id))
+              await client.send_message(message.channel, embed=emb)
             else:
-              await client.send_message(message.channel, "<@%s> :x: You aren't a subscriber! Run `?subscribe` to be subscribed to #announcements!" % (message.author.id))
+              emb = (discord.Embed(description=None, colour=0xFF0000))
+              emb.add_field(name="Oops!", value="Yikes! You are not a subscriber. Therefore, you cannot use this command. If you want to subscribe, use `?subscribe`.", inline=False)
+              await client.send_message(message.channel, embed=emb)
     if message.content.upper().startswith('?KICK'):
           if "419904679124664321" in [role.id for role in message.author.roles]:
             await client.send_message(message.channel, "<@%s> :white_check_mark: You have kicked <@%s> successfully." % (message.author.id, message.mentions[0].id))
